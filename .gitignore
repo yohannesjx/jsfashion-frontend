@@ -17,6 +17,33 @@
 /.next/
 /out/
 
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Next.js
+.next/
+out/
+dist/
+.cache/
+.vercel/
+
+# Env & secrets
+.env
+.env.*
+!.env.example  # keep a template only, with dummy values
+
+# OS/Editor junk
+.DS_Store
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
 # production
 /build
 
