@@ -4,7 +4,7 @@ import Image from "next/image"
 import CollectionCarousel from "@/components/collection-carousel"
 import Footer from "@/components/Footer"
 import ShopLatestGrid from "@/components/shop-latest-grid"
-import Header from "@/components/header"
+import Header from "@/components/Header"
 import NavigationMenu from "@/components/NavigationMenu"
 
 export default function HomeClient() {

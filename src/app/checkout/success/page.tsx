@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CheckoutSuccess() {
   return (
     <main className="max-w-2xl mx-auto text-center py-20">
@@ -8,12 +10,12 @@ export default function CheckoutSuccess() {
         Thank you for your purchase! Your payment has been confirmed, and your
         order is being processed.
       </p>
-      <a
+      <Link
         href="/"
         className="bg-black text-white px-6 py-3 rounded-lg font-semibold"
       >
         Continue Shopping
-      </a>
+      </Link>
     </main>
   );
 }

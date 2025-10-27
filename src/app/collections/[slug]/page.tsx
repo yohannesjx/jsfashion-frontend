@@ -3,7 +3,15 @@ import Header from "@/components/Header";
 import NavigationMenu from "@/components/NavigationMenu";
 import ProductList from "@/components/ProductList";
 
-export default async function CollectionPage({ params }: { params: { slug: string } }) {
+
+// ✅ Fix: Next.js 15 passes `params` as a Promise, so we await it
+export default async function CollectionPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
   const query = `
     query ($slug: String!) {
       collections(options: { filter: { slug: { eq: $slug } } }) {
@@ -33,11 +41,12 @@ export default async function CollectionPage({ params }: { params: { slug: strin
 
   let collection = null;
   try {
-    const data = await vendureQuery(query, { slug: params.slug });
+    //const data = await vendureQuery(query, { slug });
+    const data: any = await vendureQuery(query, { slug });
     console.log("🔍 Vendure collection data:", JSON.stringify(data, null, 2));
     collection = data?.collections?.items?.[0] || null;
 
-    // Fallback: if no collection found, fetch all collections
+    // ✅ Fallback: fetch all collections if slug not found
     if (!collection) {
       console.warn("⚠️ No collection found by slug, fetching all collections as fallback...");
       const fallbackQuery = `
@@ -66,7 +75,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
           }
         }
       `;
-      const fallbackData = await vendureQuery(fallbackQuery);
+      const fallbackData: any = await vendureQuery(fallbackQuery);
       console.log("🪄 Fallback collections:", JSON.stringify(fallbackData, null, 2));
       collection = fallbackData?.collections?.items?.[0] || null;
     }

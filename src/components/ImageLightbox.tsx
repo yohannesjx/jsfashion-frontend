@@ -19,8 +19,8 @@ export default function ImageLightbox({
   const startY = useRef<number | null>(null);
 
   useEffect(() => {
-    if (isOpen) setCurrent(initialIndex);
-  }, [isOpen, initialIndex]);
+  if (isOpen) Promise.resolve().then(() => setCurrent(initialIndex));
+}, [isOpen, initialIndex]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     startY.current = e.touches[0].clientY;

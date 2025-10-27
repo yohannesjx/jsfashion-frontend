@@ -47,8 +47,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   let product = null;
 
   try {
-    const data = await vendureQuery(query, { slug });
-    product = data?.product || null;
+   // const data = await vendureQuery(query, { slug });
+  const data: any = await vendureQuery(query, { slug });
+   product = data?.product || null;
   } catch (err) {
     console.error("❌ Vendure fetch failed:", err);
   }
